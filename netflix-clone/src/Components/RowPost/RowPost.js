@@ -39,7 +39,7 @@ const handleMovie=(id)=>{
 }
   return (
     <div className='row'>
-      <h2>{props.title}</h2>
+      <h3>{props.title}</h3>
       <div className="posters">
         {
           movies.map((obj)=>
