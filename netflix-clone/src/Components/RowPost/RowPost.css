@@ -5,7 +5,7 @@
 
 .posters{
     display: flex;
-    padding: 20px;
+    padding: 10px;
     overflow-x: scroll;
     overflow-y: hidden;
 }
@@ -15,19 +15,19 @@
 
 .poster{
     cursor: pointer;
-    max-height: 250px;
+    max-height: 150px;
     margin-right: 10px;
 }
 
 .smallPoster{
     cursor: pointer;
-    max-height: 150px;
+    max-height: 100px;
     margin-right: 10px;
 }
 
 .poster:hover{
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 .smallPoster:hover{
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
