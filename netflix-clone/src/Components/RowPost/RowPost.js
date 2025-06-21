@@ -43,14 +43,19 @@ const handleMovie=(id)=>{
       <div className="posters">
         {
           movies.map((obj)=>
-            <img onClick={()=>handleMovie(obj.id)} className={props.isSmall?'smallPoster':'poster'} src={`${imageUrl+obj.backdrop_path}`} alt="Poster" />
+            <img onClick={()=>handleMovie(obj.id)} className={props.isSmall?'smallPoster':'poster'} src={`${imageUrl+obj.poster_path}`} alt="Poster" />
         
 
           )
         }
         
       </div>
-     { urlId && <YouTube opts={opts} videoId={urlId.key}/>}
+     {urlId && (
+        <div>
+          <button className='back-button' onClick={()=>setUrlId('')}> ← </button>
+          <YouTube videoId={urlId.key} opts={opts} />
+        </div>
+      )}
 
     </div>
   )

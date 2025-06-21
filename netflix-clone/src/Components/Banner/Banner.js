@@ -7,12 +7,15 @@ import YouTube from 'react-youtube';
 function Banner() {
   const [movie,setMovie]=useState();
   const [urlId,setUrlId] =useState('')
-  useEffect(()=>{
-    axios.get(`trending/all/week?api_key=${API_KEY}&language=en-US`).then((responce)=>{
-    console.log(responce.data.results[0])
-    setMovie(responce.data.results[0])
-  })
-  },[])
+  useEffect(() => {
+  axios.get(`trending/all/week?api_key=${API_KEY}&language=en-US`)
+    .then((response) => {
+      const movies = response.data.results;
+      const randomIndex = Math.floor(Math.random() * movies.length);
+      setMovie(movies[randomIndex]);
+    });
+}, []);
+
 
   const handlePlayButtonClick=(id)=>{
     console.log(id)
@@ -33,7 +36,6 @@ function Banner() {
       },
     }
 
-
   return (
     <div 
     style={{backgroundImage:`url(${movie?imageUrl+movie.backdrop_path:""})`}}
@@ -42,12 +44,13 @@ function Banner() {
             <h1 className='title'>{movie?movie.title:""}</h1>
             <div className='banner_buttons'>
                 <button onClick={()=>handlePlayButtonClick(movie.id)} className='button'>Play</button>
-                <button className='button'>My list</button>
+                <button className='button'>+ My list</button>
             </div>
             <h1 className='discription'>{movie?movie.overview:""}</h1>
         </div>
         {urlId && (
         <div className='youtube-container'>
+          <button className='back-button' onClick={()=>setUrlId('')}> ← </button>
           <YouTube videoId={urlId.key} opts={opts} />
         </div>
       )}
